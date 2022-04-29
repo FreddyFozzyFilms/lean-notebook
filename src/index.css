@@ -1,9 +1,11 @@
 body {
   margin: 0;
+  min-height: 100%;
 }
 
 .app {
   display: flex;
+  width: 100%;
 }
 .top-pane {
   background-color: hsl(225, 6%, 25%);
@@ -15,7 +17,8 @@ body {
 
 .pane {
   height: 50vh;
-  display: flex;
+  width:100%;
+  background-color: rgb(255, 255, 255);
 }
 
 .editor-container {
@@ -32,7 +35,6 @@ body {
 }
 
 .editor-container.collapsed .CodeMirror-scroll {
-  position: absolute;
   overflow: hidden !important;
 }
 
