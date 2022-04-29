@@ -8,6 +8,7 @@ html, body {
   flex: 1;
   align-items: stretch;
   background-color: black;
+  height: 100vh;
 }
 .top-pane {
   background-color: hsl(225, 6%, 25%);
@@ -15,10 +16,12 @@ html, body {
   display: flex;
   flex-direction: column;
   width:50%;
+  height: 100vh;
 }
 
 .pane {
-  width: 100%;
+  width: 50%;
+  height: 100vh;
   background-color: rgb(255, 209, 209);
 }
 

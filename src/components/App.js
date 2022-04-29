@@ -6,6 +6,7 @@ function App() {
   const [html, setHtml] = useLocalStorage('html', '')
   const [css, setCss] = useLocalStorage('css', '')
   const [js, setJs] = useLocalStorage('js', '')
+  const [stex, setsTex] = useLocalStorage('stex', '')
   const [srcDoc, setSrcDoc] = useState('')
 
   useEffect(() => {
@@ -42,6 +43,12 @@ function App() {
           displayName="JS"
           value={js}
           onChange={setJs}
+        />
+        <Editor
+          language="stex"
+          displayName="sTex"
+          value={stex}
+          onChange={setsTex}
         />
       </div>
       <div className="pane">

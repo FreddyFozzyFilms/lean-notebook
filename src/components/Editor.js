@@ -4,6 +4,12 @@ import 'codemirror/theme/material.css'
 import 'codemirror/mode/xml/xml'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/css/css'
+
+// for latex code cell rendering
+import 'codemirror/mode/stex/stex'
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
+
 import { Controlled as ControlledEditor } from 'react-codemirror2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompressAlt, faExpandAlt } from '@fortawesome/free-solid-svg-icons'
@@ -23,6 +29,7 @@ export default function Editor(props) {
 
   return (
     <div className={`editor-container ${open ? '' : 'collapsed'}`}>
+      {language==='stex' && <InlineMath math={value} /* only render it's a latex cell*/ />}
       <div className="editor-title">
         {displayName}
         <button
@@ -33,6 +40,7 @@ export default function Editor(props) {
           <FontAwesomeIcon icon={open ? faCompressAlt : faExpandAlt} />
         </button>
       </div>
+      {open && 
       <ControlledEditor
         onBeforeChange={handleChange}
         value={value}
@@ -45,6 +53,7 @@ export default function Editor(props) {
           lineNumbers: true
         }}
       />
+      }
     </div>
   )
 }
