@@ -13,6 +13,8 @@
     "react": "^16.13.1",
     "react-codemirror2": "^7.2.1",
     "react-dom": "^16.13.1",
+    "react-katex": "^2.0.2",
+    "react-latex": "^2.0.0",
     "react-scripts": "^5.0.1"
   },
   "scripts": {
