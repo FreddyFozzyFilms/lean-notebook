@@ -63,8 +63,8 @@ html, body {
   color: black;
   padding: .5rem .5rem .5rem 1rem;
 
-  border-top-right-radius: .5rem;
-  border-top-left-radius: .5rem;
+  border-top-right-radius: .25rem;
+  border-top-left-radius: .25rem;
 }
 
 .CodeMirror {
