@@ -62,7 +62,9 @@ html, body {
   background-color: rgb(241, 241, 241);
   color: black;
   padding: .5rem .5rem .5rem 1rem;
-  border-radius: 0.25rem;
+
+  border-top-right-radius: .5rem;
+  border-top-left-radius: .5rem;
 }
 
 .CodeMirror {
