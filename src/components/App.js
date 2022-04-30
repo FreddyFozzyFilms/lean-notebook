@@ -51,7 +51,6 @@ function App() {
           onChange={setsTex}
         />
         <div className="createnew">
-          <h1>new editor</h1>
         </div>
       </div>
       <div className="pane">
