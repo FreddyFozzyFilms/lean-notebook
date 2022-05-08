@@ -10,6 +10,8 @@ import 'codemirror/mode/stex/stex'
 // for latex code cell rendering
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+// “React-katex,” npm. [Online]. Available: 
+//     https://www.npmjs.com/package/react-katex. [Accessed: 07-May-2022]. 
 
 // leanmode syntax highlighting
 import './leanMode';
