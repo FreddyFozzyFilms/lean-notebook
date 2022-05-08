@@ -1,5 +1,7 @@
 import CodeMirror from 'codemirror';
 
+// B. G.-ge Chen, “Hello, lean prover!,” Observable, 26-Jan-2021. [Online]. Available: 
+//      https://observablehq.com/@bryangingechen/hello-lean-prover. [Accessed: 07-May-2022]. 
 CodeMirror.defineMode("lean", function(_config, modeConfig) {
     function switchState(source, setState, state, f) {
     setState(f);
