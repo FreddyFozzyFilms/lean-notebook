@@ -4,9 +4,9 @@ import useLocalStorage from '../hooks/useLocalStorage'
 
 function App() {
   const [html, setHtml] = useLocalStorage('html', '')
-  const [css, setCss] = useLocalStorage('css', '')
-  const [js, setJs] = useLocalStorage('js', '')
   const [stex, setsTex] = useLocalStorage('stex', '')
+  const [lean, setLean] = useLocalStorage('lean', '')
+
   const [srcDoc, setSrcDoc] = useState('')
 
   useEffect(() => {
@@ -14,14 +14,12 @@ function App() {
       setSrcDoc(`
         <html>
           <body>${html}</body>
-          <style>${css}</style>
-          <script>${js}</script>
         </html>
       `)
     }, 250)
 
     return () => clearTimeout(timeout)
-  }, [html, css, js])
+  }, [html, stex, lean])
 
   return (
     <div className="app">
@@ -33,26 +31,20 @@ function App() {
           onChange={setHtml}
         />
         <Editor
-          language="css"
-          displayName="CSS"
-          value={css}
-          onChange={setCss}
-        />
-        <Editor
-          language="javascript"
-          displayName="JS"
-          value={js}
-          onChange={setJs}
-        />
-        <Editor
           language="stex"
           displayName="sTex"
           value={stex}
           onChange={setsTex}
         />
-        <div className="createnew">
-        </div>
+        <Editor
+          language="lean"
+          displayName="lean"
+          value={lean}
+          onChange={setLean}
+        />
+        <div className="createnew"></div>
       </div>
+
       <div className="pane">
         <iframe
           srcDoc={srcDoc}

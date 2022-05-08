@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/material.css'
+
 import 'codemirror/mode/xml/xml'
-import 'codemirror/mode/javascript/javascript'
-import 'codemirror/mode/css/css'
+
+// latex code cell syntax highlighting
+import 'codemirror/mode/stex/stex'
 
 // for latex code cell rendering
-import 'codemirror/mode/stex/stex'
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+
+// leanmode syntax highlighting
+import './leanMode';
 
 import { Controlled as ControlledEditor } from 'react-codemirror2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
