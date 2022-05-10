@@ -19,7 +19,7 @@ function App() {
     };
     fetch("http://localhost:8000/api/leancompiler", requestOptions)
               .then(res => res.json())
-              .then(data => setLeanOut(JSON.stringify(data)));
+              .then(data => setLeanOut(data.stdout));
     setLean(value);
   }
   return (
