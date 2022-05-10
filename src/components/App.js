@@ -3,33 +3,28 @@ import Editor from './Editor'
 import useLocalStorage from '../hooks/useLocalStorage'
 
 function App() {
-  const [html, setHtml] = useLocalStorage('html', '')
   const [stex, setsTex] = useLocalStorage('stex', '')
   const [lean, setLean] = useLocalStorage('lean', '')
 
-  const [srcDoc, setSrcDoc] = useState('')
+  const [leanOut, setLeanOut] = useState('')
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setSrcDoc(`
-        <html>
-          <body>${html}</body>
-        </html>
-      `)
-    }, 250)
-
-    return () => clearTimeout(timeout)
-  }, [html, stex, lean])
-
+  function updateLean(value) {
+    let requestOptions = {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({ code: value})
+    };
+    fetch("http://localhost:8000/api/leancompiler", requestOptions)
+              .then(res => res.json())
+              .then(data => setLeanOut(JSON.stringify(data)));
+    setLean(value);
+  }
   return (
     <div className="app">
       <div className="pane top-pane">
-        <Editor
-          language="xml"
-          displayName="HTML"
-          value={html}
-          onChange={setHtml}
-        />
         <Editor
           language="stex"
           displayName="sTex"
@@ -40,20 +35,13 @@ function App() {
           language="lean"
           displayName="lean"
           value={lean}
-          onChange={setLean}
+          onChange={updateLean}
         />
         <div className="createnew"></div>
       </div>
 
       <div className="pane">
-        <iframe
-          srcDoc={srcDoc}
-          title="output"
-          sandbox="allow-scripts"
-          frameBorder="0"
-          width="100%"
-          height="100%"
-        />
+        {leanOut}
       </div>
     </div>
   )
