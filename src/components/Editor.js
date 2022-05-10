@@ -6,10 +6,15 @@ import 'codemirror/mode/xml/xml'
 
 // latex code cell syntax highlighting
 import 'codemirror/mode/stex/stex'
+import 'codemirror/mode/markdown/markdown'
 
 // for latex code cell rendering
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+
+import ReactMarkdown from 'react-markdown';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 // “React-katex,” npm. [Online]. Available: 
 //     https://www.npmjs.com/package/react-katex. [Accessed: 07-May-2022]. 
 
@@ -35,7 +40,11 @@ export default function Editor(props) {
 
   return (
     <div className={`editor-container ${open ? '' : 'collapsed'}`}>
-      {language==='stex' && <InlineMath math={value} /* only render if it's a latex cell*/ />}
+      {language==='stex' && 
+        <ReactMarkdown 
+          children={value}
+          remarkPlugins={[remarkMath]}
+          rehypePlugins={[rehypeKatex]} />}
       <div className="editor-title">
         {displayName}
         <button
