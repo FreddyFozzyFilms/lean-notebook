@@ -35,7 +35,7 @@ export default function Editor(props) {
 
   return (
     <div className={`editor-container ${open ? '' : 'collapsed'}`}>
-      {language==='stex' && <InlineMath math={value} /* only render it's a latex cell*/ />}
+      {language==='stex' && <InlineMath math={value} /* only render if it's a latex cell*/ />}
       <div className="editor-title">
         {displayName}
         <button

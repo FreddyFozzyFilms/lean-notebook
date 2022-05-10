@@ -41,7 +41,7 @@ function App() {
       </div>
 
       <div className="pane">
-        {leanOut}
+        <p>{leanOut}</p>
       </div>
     </div>
   )
