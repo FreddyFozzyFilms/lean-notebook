@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Editor from './Editor'
+import LeanOut from './LeanOut'
 import useLocalStorage from '../hooks/useLocalStorage'
 
 function App() {
@@ -24,10 +25,10 @@ function App() {
   }
   return (
     <div className="app">
-      <div className="pane top-pane">
+      <div className="notepad">
         <Editor
           language="stex"
-          displayName="sTex"
+          displayName="mArkdown"
           value={stex}
           onChange={setsTex}
         />
@@ -40,8 +41,8 @@ function App() {
         <div className="createnew"></div>
       </div>
 
-      <div className="pane">
-        <p>{leanOut}</p>
+      <div className="console-container">
+        <LeanOut log={leanOut} />
       </div>
     </div>
   )
