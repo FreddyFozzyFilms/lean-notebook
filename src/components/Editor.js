@@ -30,7 +30,8 @@ export default function Editor(props) {
     language,
     displayName,
     value,
-    onChange
+    onChange,
+    onCursorChange
   } = props
   const [open, setOpen] = useState(true)
 
@@ -58,6 +59,7 @@ export default function Editor(props) {
       {open && 
       <ControlledEditor
         onBeforeChange={handleChange}
+        onCursorActivity={(editor) => {onCursorChange(editor.getDoc().getCursor())}}
         value={value}
         className="code-mirror-wrapper"
         options={{

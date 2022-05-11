@@ -7,7 +7,11 @@ function App() {
   const [stex, setsTex] = useLocalStorage('stex', '')
   const [lean, setLean] = useLocalStorage('lean', '')
 
+  const [cursorPos, setCursorPos] = useState({line: 0, char: 0})
+
   const [leanOut, setLeanOut] = useState('')
+
+  useEffect(() => {console.log(cursorPos);})
 
   function updateLean(value) {
     let requestOptions = {
@@ -37,6 +41,7 @@ function App() {
           displayName="lean"
           value={lean}
           onChange={updateLean}
+          onCursorChange={setCursorPos}
         />
         <div className="createnew"></div>
       </div>

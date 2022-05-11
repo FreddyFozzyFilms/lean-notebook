@@ -4,7 +4,7 @@ export default function LeanOut(props){
     const tacticArray = log.split("\n");
     return (
         <div className="console">
-        {tacticArray.map(tactic => <p key={tactic}>{tactic}</p>)}
+        {tacticArray.map((tactic, index) => <p key={index}>{tactic}</p>)}
         </div>
     )
 }
