@@ -7,25 +7,15 @@ function App() {
   const [stex, setsTex] = useLocalStorage('stex', '')
   const [lean, setLean] = useLocalStorage('lean', '')
 
-  const [cursorPos, setCursorPos] = useState({line: 0, char: 0})
+  const [cursorInd, setCursorInd] = useState(0)
 
   const [leanOut, setLeanOut] = useState('')
 
   useEffect(() => {
-    // the substring of lean code sent to the leanAPI
-    // basically string from start to the cursor (with some begin end blocks added back in)
-    const lines = lean.split('\n')
-    const linesToCursor = lines.map((line, index) =>  
-    {
-      if (index < cursorPos.line){
-        return line;
-      }else if (index === cursorPos.line){
-        return line.substring(0, cursorPos.char+1);
-      }else{
-        return "";
-      }
-    })
-    const leanCut = linesToCursor.join("\n");
+    // get the substring ending at the cursor position
+    const leanCut = lean.substring(0, cursorInd+1);
+    
+    // close off any unclosed begin-end blocks
     const unclosedBeginEnd  = leanCut.lastIndexOf("begin") > leanCut.lastIndexOf("end");
     const leanDebug = unclosedBeginEnd ? leanCut + "end": leanCut;
     
@@ -40,7 +30,7 @@ function App() {
     fetch("http://localhost:8000/api/leancompiler", requestOptions)
               .then(res => res.json())
               .then(data => setLeanOut(data.stdout));
-  }, [lean, cursorPos])
+  }, [lean, cursorInd])
 
   function updateLean(value) {
     setLean(value);
@@ -59,7 +49,7 @@ function App() {
           displayName="lean"
           value={lean}
           onChange={updateLean}
-          onCursorChange={setCursorPos}
+          onCursorChange={setCursorInd}
         />
         <div className="createnew"></div>
       </div>

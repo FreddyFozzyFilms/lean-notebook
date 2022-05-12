@@ -59,7 +59,11 @@ export default function Editor(props) {
       {open && 
       <ControlledEditor
         onBeforeChange={handleChange}
-        onCursorActivity={(editor) => {onCursorChange(editor.getDoc().getCursor())}}
+        onCursorActivity={(editor) => {
+          const doc = editor.getDoc();
+          const cursorInd = doc.indexFromPos(doc.getCursor());
+          onCursorChange(cursorInd)
+        }}
         value={value}
         className="code-mirror-wrapper"
         options={{
