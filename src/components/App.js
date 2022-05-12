@@ -11,20 +11,38 @@ function App() {
 
   const [leanOut, setLeanOut] = useState('')
 
-  useEffect(() => {console.log(cursorPos);})
-
-  function updateLean(value) {
-    let requestOptions = {
+  useEffect(() => {
+    // the substring of lean code sent to the leanAPI
+    // basically string from start to the cursor (with some begin end blocks added back in)
+    const lines = lean.split('\n')
+    const linesToCursor = lines.map((line, index) =>  
+    {
+      if (index < cursorPos.line){
+        return line;
+      }else if (index === cursorPos.line){
+        return line.substring(0, cursorPos.char+1);
+      }else{
+        return "";
+      }
+    })
+    const leanCut = linesToCursor.join("\n");
+    const unclosedBeginEnd  = leanCut.lastIndexOf("begin") > leanCut.lastIndexOf("end");
+    const leanDebug = unclosedBeginEnd ? leanCut + "end": leanCut;
+    
+    const requestOptions = {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      body: JSON.stringify({ code: value})
+      body: JSON.stringify({ code: leanDebug})
     };
     fetch("http://localhost:8000/api/leancompiler", requestOptions)
               .then(res => res.json())
               .then(data => setLeanOut(data.stdout));
+  }, [lean, cursorPos])
+
+  function updateLean(value) {
     setLean(value);
   }
   return (
