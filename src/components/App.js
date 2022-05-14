@@ -30,18 +30,15 @@ function App() {
   const [leanOut, setLeanOut] = useState('')
 
   useEffect(() => {
+    console.log('yes')
     // get the substring ending at the cursor position
     const currentCell = cells[cursorPos.cellId];
     const lean = currentCell.value;
     const leanCut = lean.substring(0, cursorPos.cursorInd+1);
 
-    console.log('pigu')
-
     // close off any unclosed begin-end blocks
     const unclosedBeginEnd  = leanCut.lastIndexOf("begin") > leanCut.lastIndexOf("end");
     const leanDebug = unclosedBeginEnd ? leanCut + "end": leanCut;
-
-    console.log(leanDebug);
     
     const requestOptions = {
       method: 'POST',
@@ -54,7 +51,7 @@ function App() {
     fetch("http://localhost:8000/api/leancompiler", requestOptions)
               .then(res => res.json())
               .then(data => setLeanOut(data.stdout));
-  }, [cells, cursorPos])
+  }, [cursorPos])
 
   function updateCell(mode, value, id){
     const newCell = {
