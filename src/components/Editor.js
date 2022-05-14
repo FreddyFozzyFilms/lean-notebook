@@ -27,17 +27,17 @@ import { faCompressAlt, faExpandAlt } from '@fortawesome/free-solid-svg-icons'
 
 export default function Editor(props) {
   const {
+    // content
     language,
-    displayName,
     value,
-    onChange,
-    onCursorChange
+
+    // content management functions
+    onCellChange,
+    onCursorChange,
+
+    id
   } = props
   const [open, setOpen] = useState(true)
-
-  function handleChange(editor, data, value) {
-    onChange(value)
-  }
 
   return (
     <div className={`editor-container ${open ? '' : 'collapsed'}`}>
@@ -47,7 +47,13 @@ export default function Editor(props) {
           remarkPlugins={[remarkMath]}
           rehypePlugins={[rehypeKatex]} />}
       <div className="editor-title">
-        {displayName}
+        {language}
+        <button 
+          className="toggle-mode" 
+          onClick={() => onCellChange(language === 'lean' ? 'stex' : 'lean', value, id)}
+        >
+        toggle mode
+        </button>
         <button
           type="button"
           className="expand-collapse-btn"
@@ -58,11 +64,12 @@ export default function Editor(props) {
       </div>
       {open && 
       <ControlledEditor
-        onBeforeChange={handleChange}
+        onBeforeChange={(editor, data, value) => onCellChange(language, value, id)}
         onCursorActivity={(editor) => {
           const doc = editor.getDoc();
           const cursorInd = doc.indexFromPos(doc.getCursor());
-          onCursorChange(cursorInd)
+
+          onCursorChange(cursorInd, id);
         }}
         value={value}
         className="code-mirror-wrapper"
