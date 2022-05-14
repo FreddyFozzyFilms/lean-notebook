@@ -62,6 +62,26 @@ function App() {
     setCells(prevCells => prevCells.map(cell => cell.id === id ? newCell : cell))
   }
 
+  // create new cell located at the given id (insert)
+  function createNewCell(id) {
+    const emptyCell = {
+      mode: 'lean',
+      value: '',
+      id: id
+    }
+
+    setCells(prevCells => {
+      const newCells = [...prevCells]
+      newCells.splice(id, 0, emptyCell);
+
+      // set id's to proper value
+      for (var i = 0; i < newCells.length; i++) {
+        newCells[i].id = i;
+      }
+      return newCells;
+    })
+  }
+
   //console.log(cells)
   return (
     <div className="app">
@@ -74,6 +94,8 @@ function App() {
 
               onCellChange={updateCell}
               onCursorChange={(cursorInd, id) => setCursorPos({cursorInd: cursorInd, cellId: id})}
+
+              onNewCell={createNewCell}
 
               key={cell.id}
               id={cell.id}

@@ -35,6 +35,8 @@ export default function Editor(props) {
     onCellChange,
     onCursorChange,
 
+    onNewCell,
+
     id
   } = props
   const [open, setOpen] = useState(true)
@@ -83,7 +85,7 @@ export default function Editor(props) {
       />
       }
       <div className="add-cell-container">
-        <button className="add-cell">+</button>
+        <button className="add-cell" onClick={() => onNewCell(id + 1)}>+</button>
       </div>
     </div>
   )
