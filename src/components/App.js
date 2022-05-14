@@ -80,7 +80,6 @@ function App() {
             />
           )
         })}
-        <div className="createnew"></div>
       </div>
 
       <div className="console-container">

@@ -82,6 +82,9 @@ export default function Editor(props) {
         }}
       />
       }
+      <div className="add-cell-container">
+        <button className="add-cell">+</button>
+      </div>
     </div>
   )
 }
