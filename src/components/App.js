@@ -67,8 +67,22 @@ function App() {
     }
 
     setCells(prevCells => {
+      // add cell
       const newCells = [...prevCells]
       newCells.splice(id, 0, emptyCell);
+
+      // set id's to proper value
+      for (var i = 0; i < newCells.length; i++) {
+        newCells[i].id = i;
+      }
+      return newCells;
+    })
+  }
+  function deleteCell(id) {
+    setCells(prevCells => {
+      // remove cell
+      const newCells = [...prevCells]
+      newCells.splice(id, 1);
 
       // set id's to proper value
       for (var i = 0; i < newCells.length; i++) {
@@ -92,6 +106,7 @@ function App() {
               onCursorChange={(cursorInd, id) => setCursorPos({cursorInd: cursorInd, cellId: id})}
 
               onNewCell={createNewCell}
+              onCellDelete={deleteCell}
 
               key={cell.id}
               id={cell.id}

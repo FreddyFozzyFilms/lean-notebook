@@ -87,7 +87,12 @@ html, body {
 
   width: 100%;
 }
-.add-cell {
+.add-cell-container > button {
   margin-top: 5px;
-  margin-right: 0px;
+  width: 30px;
+}
+.remove-cell {
+  margin-right: 2px;
+}
+.add-cell {
 }

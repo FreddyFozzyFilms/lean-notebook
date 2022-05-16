@@ -36,6 +36,7 @@ export default function Editor(props) {
     onCursorChange,
 
     onNewCell,
+    onCellDelete,
 
     id
   } = props
@@ -85,6 +86,7 @@ export default function Editor(props) {
       />
       }
       <div className="add-cell-container">
+        <button className="remove-cell" onClick={() => onCellDelete(id)}>-</button>
         <button className="add-cell" onClick={() => onNewCell(id + 1)}>+</button>
       </div>
     </div>
