@@ -30,9 +30,9 @@ function App() {
   const [leanOut, setLeanOut] = useState('')
 
   useEffect(() => {
-    console.log('yes')
-    // get the substring ending at the cursor position
     const currentCell = cells[cursorPos.cellId];
+
+    // get the substring ending at the cursor position
     const lean = currentCell.value;
     const leanCut = lean.substring(0, cursorPos.cursorInd+1);
 
