@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Editor from './Editor'
 import LeanOut from './LeanOut'
-import useLocalStorage from '../hooks/useLocalStorage'
 
 function App() {
-  //const [stex, setsTex] = useLocalStorage('stex', '')
-  //const [lean, setLean] = useLocalStorage('lean', '')
-
   // cell = 
   // {
   //  mode: 'lean' or 'markdown'
