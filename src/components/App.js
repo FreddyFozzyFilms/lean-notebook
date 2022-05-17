@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Editor from './Editor'
 import LeanOut from './LeanOut'
+import plus from '../images/Plus.png'
 
 function App() {
   // cell = 
@@ -78,6 +79,20 @@ function App() {
       return newCells;
     })
   }
+  function pushNewCell(){
+    setCells(prevCells => {
+      const emptyCell = {
+        mode: 'lean',
+        value: '',
+        id: prevCells.length
+      }
+
+      const newCells = [...prevCells]
+      newCells.push(emptyCell);
+
+      return newCells;
+    })
+  }
   function deleteCell(id) {
     setCells(prevCells => {
       // remove cell
@@ -92,7 +107,7 @@ function App() {
     })
   }
 
-  //console.log(cells)
+  console.log(cells)
   return (
     <div className="app">
       <div className="notepad">
@@ -113,6 +128,9 @@ function App() {
             />
           )
         })}
+        <div className="createnew" onClick={pushNewCell}>
+          <img src={plus} alt="create new cell"/>
+        </div>
       </div>
 
       <div className="console-container">
