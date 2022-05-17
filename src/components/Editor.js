@@ -25,6 +25,9 @@ import { Controlled as ControlledEditor } from 'react-codemirror2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompressAlt, faExpandAlt } from '@fortawesome/free-solid-svg-icons'
 
+import {DropdownButton, Dropdown} from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 export default function Editor(props) {
   const {
     // content
@@ -57,6 +60,20 @@ export default function Editor(props) {
         >
         toggle mode
         </button>
+
+        <DropdownButton
+          alignRight
+          title="{ }"
+          id="dropdown-menu-align-right"
+          drop="end"
+        >
+          <Dropdown.Item as="button" eventKey="option-1">option-1</Dropdown.Item>
+          <Dropdown.Item as="button" eventKey="option-2">option-2</Dropdown.Item>
+          <Dropdown.Item as="button" eventKey="option-3">option 3</Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item eventKey="some link">some link</Dropdown.Item>
+        </DropdownButton>
+
         <button
           type="button"
           className="expand-collapse-btn"

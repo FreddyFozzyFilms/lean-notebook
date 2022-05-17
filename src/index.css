@@ -117,3 +117,7 @@ html, body {
 }
 .add-cell {
 }
+
+.dropdown-toggle::after {
+  display: none !important; 
+}
