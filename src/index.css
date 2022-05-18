@@ -31,7 +31,7 @@ html, body {
   align-self: center;
   width: 98%;
 
-  margin-top: 5px;
+  margin-top: 100px;
   margin-bottom: 5px;
 }
 .createnew > img {
@@ -85,6 +85,14 @@ html, body {
 .cell-container {
   display: flex;
   justify-content: flex-start;
+
+  background-color: white;
+
+  margin-left: 5px;
+  margin-right: 5px;
+
+  margin-top: 10px;
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
 }
 
 .settings-bar-container {
@@ -100,7 +108,7 @@ html, body {
   background-color: rgb(241, 241, 241);
   color: black;
   padding: .5rem .5rem .5rem 1rem;
-
+  
   border-top-right-radius: .25rem;
   border-top-left-radius: .25rem;
 }
