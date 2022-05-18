@@ -87,11 +87,13 @@ export default function Editor(props) {
           resizable={false}
         />
         }
+        {open &&
         <div className="add-cell-container">
           <SettingsBar changeMode={(mode) => (onCellChange(mode, value, id))} />
           <button className="remove-cell" onClick={() => onCellDelete(id)}>-</button>
           <button className="add-cell" onClick={() => onNewCell(id + 1)}>+</button>
         </div>
+        }
       </div>
     </div>
   )
