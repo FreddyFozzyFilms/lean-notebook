@@ -48,13 +48,21 @@ export default function Editor(props) {
     <div className="cell-container">
       <div className={`editor-container ${open ? '' : 'collapsed'}`}>
         <div className="editor-title">
+        <div>
           {language==='stex' && 
             <ReactMarkdown 
               children={value}
               remarkPlugins={[remarkMath]}
               rehypePlugins={[rehypeKatex]} />}
+        </div>
             
-            <SettingsBar open={open} setOpen={setOpen} changeMode={(mode) => onCellChange(mode, value, id)}/>
+            <button
+              type="button"
+              className="expand-collapse-btn"
+              onClick={() => setOpen(prevOpen => !prevOpen)}
+            >
+              <FontAwesomeIcon icon={open ? faCompressAlt : faExpandAlt} />
+            </button>
         </div>
 
         {open && 
@@ -80,6 +88,7 @@ export default function Editor(props) {
         />
         }
         <div className="add-cell-container">
+          <SettingsBar changeMode={(mode) => (onCellChange(mode, value, id))} />
           <button className="remove-cell" onClick={() => onCellDelete(id)}>-</button>
           <button className="add-cell" onClick={() => onNewCell(id + 1)}>+</button>
         </div>
