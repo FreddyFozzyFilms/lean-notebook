@@ -19,6 +19,7 @@
     "react-latex": "^2.0.0",
     "react-markdown": "^8.0.3",
     "react-scripts": "^5.0.1",
+    "reactjs-dropdown-component": "^1.2.0",
     "rehype-katex": "^6.0.2",
     "remark-math": "^5.1.1"
   },

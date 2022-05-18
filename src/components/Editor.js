@@ -25,8 +25,7 @@ import { Controlled as ControlledEditor } from 'react-codemirror2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompressAlt, faExpandAlt } from '@fortawesome/free-solid-svg-icons'
 
-import {DropdownButton, Dropdown} from 'react-bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import SettingsBar from './SettingsBar'
 
 export default function Editor(props) {
   const {
@@ -46,65 +45,44 @@ export default function Editor(props) {
   const [open, setOpen] = useState(true)
 
   return (
-    <div className={`editor-container ${open ? '' : 'collapsed'}`}>
-      {language==='stex' && 
-        <ReactMarkdown 
-          children={value}
-          remarkPlugins={[remarkMath]}
-          rehypePlugins={[rehypeKatex]} />}
-      <div className="editor-title">
-        {language}
-        <button 
-          className="toggle-mode" 
-          onClick={() => onCellChange(language === 'lean' ? 'stex' : 'lean', value, id)}
-        >
-        toggle mode
-        </button>
+    <div className="cell-container">
+      <div className={`editor-container ${open ? '' : 'collapsed'}`}>
+        <div className="editor-title">
+          {language==='stex' && 
+            <ReactMarkdown 
+              children={value}
+              remarkPlugins={[remarkMath]}
+              rehypePlugins={[rehypeKatex]} />}
+            
+            <SettingsBar open={open} setOpen={setOpen} changeMode={(mode) => onCellChange(mode, value, id)}/>
+        </div>
 
-        <DropdownButton
-          alignRight
-          title="{ }"
-          id="dropdown-menu-align-right"
-          drop="end"
-        >
-          <Dropdown.Item as="button" eventKey="option-1">option-1</Dropdown.Item>
-          <Dropdown.Item as="button" eventKey="option-2">option-2</Dropdown.Item>
-          <Dropdown.Item as="button" eventKey="option-3">option 3</Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item eventKey="some link">some link</Dropdown.Item>
-        </DropdownButton>
+        {open && 
+        <ControlledEditor
+          onBeforeChange={(editor, data, value) => onCellChange(language, value, id)}
+          onCursorActivity={(editor) => {
+            const doc = editor.getDoc();
+            const cursorInd = doc.indexFromPos(doc.getCursor());
 
-        <button
-          type="button"
-          className="expand-collapse-btn"
-          onClick={() => setOpen(prevOpen => !prevOpen)}
-        >
-          <FontAwesomeIcon icon={open ? faCompressAlt : faExpandAlt} />
-        </button>
-      </div>
-      {open && 
-      <ControlledEditor
-        onBeforeChange={(editor, data, value) => onCellChange(language, value, id)}
-        onCursorActivity={(editor) => {
-          const doc = editor.getDoc();
-          const cursorInd = doc.indexFromPos(doc.getCursor());
+            onCursorChange(cursorInd, id);
+          }}
+          value={value}
+          className="code-mirror-wrapper"
+          options={{
+            lineWrapping: true,
+            lint: true,
+            mode: language,
+            theme: 'material',
+            lineNumbers: true
+          }}
 
-          onCursorChange(cursorInd, id);
-        }}
-        value={value}
-        className="code-mirror-wrapper"
-        options={{
-          lineWrapping: true,
-          lint: true,
-          mode: language,
-          theme: 'material',
-          lineNumbers: true
-        }}
-      />
-      }
-      <div className="add-cell-container">
-        <button className="remove-cell" onClick={() => onCellDelete(id)}>-</button>
-        <button className="add-cell" onClick={() => onNewCell(id + 1)}>+</button>
+          resizable={false}
+        />
+        }
+        <div className="add-cell-container">
+          <button className="remove-cell" onClick={() => onCellDelete(id)}>-</button>
+          <button className="add-cell" onClick={() => onNewCell(id + 1)}>+</button>
+        </div>
       </div>
     </div>
   )

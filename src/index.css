@@ -16,7 +16,7 @@ html, body {
   display: flex;
   flex-direction: column;
 
-  width:100%;
+  width:50vw;
   overflow-y: scroll; 
   height: 100vh;
 }
@@ -50,19 +50,20 @@ html, body {
 .console-container {
   background-color:hsl(0, 3%, 94%);
   
-  width: 100%;
+  width: 50vw;
   height: 100vh;
 }
 
 .console {
   margin-left: 10px;
+  word-wrap: break-word;
 }
 
 .editor-container {
   display: flex;
   flex-direction: column;
   padding: .5rem;
-  background-color: hsl(0, 0%, 100%);
+  width: 100%;
 }
 
 .editor-container.collapsed {
@@ -81,6 +82,15 @@ html, body {
   cursor: pointer;
 }
 
+.cell-container {
+  display: flex;
+  justify-content: flex-start;
+  background-color:aqua;
+}
+
+.settings-bar {
+  display: flex;
+}
 .editor-title {
   display: flex;
   justify-content: space-between;
