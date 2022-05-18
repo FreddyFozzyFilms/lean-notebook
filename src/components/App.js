@@ -12,7 +12,7 @@ function App() {
   // }
   const [cells, setCells] = useState([
   {
-     mode: 'stex',
+     mode: 'lean',
      value: '#eval 2+2=4',
      id: 0
   }

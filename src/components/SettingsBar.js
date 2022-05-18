@@ -15,7 +15,7 @@ export default function LeanOut(props){
             list={[{label: "stex", value: "stex"}, {label: "lean", value: "lean"}]}
             onChange={(item, name) => changeMode(item.value)}
 
-            styles={{headerTitle: { size: '2px' } }}
+            styles={{headerTitle: { ['font-size']: '20px' }, header: {height: '23px'} }}
             />
         </div>
     )

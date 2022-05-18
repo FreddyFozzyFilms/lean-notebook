@@ -118,11 +118,13 @@ html, body {
 .add-cell-container {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+
+  margin-top: 5px;
 
   width: 100%;
 }
 .add-cell-container > button {
-  margin-top: 5px;
   width: 30px;
 }
 .remove-cell {
