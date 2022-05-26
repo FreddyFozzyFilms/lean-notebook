@@ -5,17 +5,17 @@ import { DropdownMultiple, Dropdown } from 'reactjs-dropdown-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompressAlt, faExpandAlt } from '@fortawesome/free-solid-svg-icons'
 
-export default function LeanOut(props){
+export default function SettingsBar(props){
     const {changeMode} = props
     return (
         <div className="settings-bar">
             <Dropdown
             name="language"
-            title="select mode"
+            title=""
             list={[{label: "stex", value: "stex"}, {label: "lean", value: "lean"}]}
             onChange={(item, name) => changeMode(item.value)}
 
-            styles={{headerTitle: { ['font-size']: '20px' }, header: {height: '23px'} }}
+            styles={{headerTitle: { ['font-size']: '20px' }, header: {height: '23px', width: '0px'}, menuPortal : {['z-index']: '9999 !important'} }}
             />
         </div>
     )

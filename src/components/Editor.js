@@ -55,7 +55,6 @@ export default function Editor(props) {
               remarkPlugins={[remarkMath]}
               rehypePlugins={[rehypeKatex]} />}
         </div>
-            
             <button
               type="button"
               className="expand-collapse-btn"
