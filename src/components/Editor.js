@@ -47,6 +47,7 @@ export default function Editor(props) {
   return (
     <div className="cell-container">
       <div className={`editor-container ${open ? '' : 'collapsed'}`}>
+      <SettingsBar changeMode={(mode) => (onCellChange(mode, value, id))} />
         <div className="editor-title">
         <div>
           {language==='stex' && 
@@ -88,7 +89,6 @@ export default function Editor(props) {
         }
         {open &&
         <div className="add-cell-container">
-          <SettingsBar changeMode={(mode) => (onCellChange(mode, value, id))} />
           <button className="remove-cell" onClick={() => onCellDelete(id)}>-</button>
           <button className="add-cell" onClick={() => onNewCell(id + 1)}>+</button>
         </div>
