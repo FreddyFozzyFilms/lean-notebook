@@ -47,7 +47,7 @@ export default function Editor(props) {
   return (
     <div className="cell-container">
       <div className={`editor-container ${open ? '' : 'collapsed'}`}>
-      <SettingsBar changeMode={(mode) => (onCellChange(mode, value, id))} />
+      {open && <SettingsBar changeMode={(mode) => (onCellChange(mode, value, id))} />}
         <div className="editor-title">
         <div>
           {language==='stex' && 
