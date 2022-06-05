@@ -93,6 +93,20 @@ function App() {
       return newCells;
     })
   }
+  function pushTopNewCell(){
+    setCells(prevCells => {
+      const emptyCell = {
+        mode: 'lean',
+        value: '',
+        id: prevCells.length
+      }
+
+      const newCells = [...prevCells]
+      newCells.splice(0, 0, emptyCell);
+
+      return newCells;
+    })
+  }
   function deleteCell(id) {
     setCells(prevCells => {
       // remove cell
@@ -111,6 +125,9 @@ function App() {
   return (
     <div className="app">
       <div className="notepad">
+        <div className="createnew" onClick={pushTopNewCell}>
+          <img src={plus} alt="create new cell"/>
+        </div>
         {cells.map((cell) => {
           return (
             <Editor
