@@ -113,4 +113,23 @@ Notice that the remarkMath and rehypeKatex objects are passed from above rather 
 >The leancompiler has actually been [dockerized](https://hub.docker.com/r/leanprovercommunity/mathlib) meaning that the leancompiler server side could be hosted on a cloud service such as [heroku](https://www.heroku.com/)
 
 <br>
-All code leading up to the users cursor position are stored in a leanfile which is then compiled. The resultant error logs are parsed into a tactic state.
+All code leading up to the users cursor position are stored in a leanfile which is then compiled. 
+The resultant error logs are then parsed into a tactic state.
+
+# Take Aways
+
+## Tooling
+
+Every time the user changes the cursor position, we have to send the entire notebook state (up to the cursor position) to the server. If we had some way of storing only the changes to the notebook state (up to the cursor), that would make the lean-notebook scale much better for larger notebooks.
+
+There is actually a tools that does this for text-editors called [Quill](https://quilljs.com/docs/api/). If a similar API could be created for notebook systems that would not only streamline this project but also many others.
+
+## Generalizations
+
+As expressed in the **rivals** section, our main gripe with Jupyter notebook is that it compiles *cell* by *cell* instead of *char* by *char*.
+
+Jupyter notebook is a *cell* by *cell* compiling notebook that allows you to create custom kernels tailored to various proggramming languages. Their kernels consist of a `custom code editor mode` and a `compiler`.
+
+lean-notebook could be generalized into a *char* by *char* compiling notebook that allows you to create custom server-kernels tailored to different proggraming languages. Our server-kernel would consist of a `custom code editor mode` and a `server` (which takes a cursor position of file state as input and outputs some sort of tactic state).
+
+We think that this notebook would be called **Mecyry Notebook**. Mecury is closer to the sun and hence shines brighter than Jupiter. Our notebook would be better than Jupyter notebook, meaning that it would shine brighter.
