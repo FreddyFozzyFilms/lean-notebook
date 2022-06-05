@@ -47,7 +47,70 @@ Bryan Chen's observable notebook already defined a custom languge mode for `lean
 As, for the creation of code cell components in react, we simply forked from this [code repo](https://github.com/WebDevSimplified/React-CodePen-Clone) which uses the `react-codemirror2` npm package.
 
 If you want to improve this project, it would suggested that you create a new react project (using `npx create-react-app`) in react version 16 or 17 and with the proper node version and then copy over this projects source code files. This project uses a version of node that is ahead of the `react-codemirror2` library, resulting in many potential vulnerabilities.
-## Regex
+## Language Integration with react-codemirror2
 
-# react-markdown
+The following [code snippet](https://observablehq.com/@bryangingechen/hello-lean-prover@5065#CMLeanMode) from Bryan Chen's observable notebook defines the lean language mode.
+
+This code snippet is contained inside of the `leanMode.js` file, in which a CodeMirror object is created and then the lean language mode is added to that CodeMirror object using `.defineMode` and `.defineMime`. 
+
+>`.defineMode` describes the funtionality of the leanmode syntax highlighting
+
+> `.defineMime` supplies some additinal metadata.
+
+CodeMirror is simply an API, it is the `react-codemirror2` library that actually provides you with `ControlledEditor` react components.
+
+A sample `ControlledEditor` is shown below:
+```jsx
+<ControlledEditor
+          onBeforeChange={(editor, data, value) => {}}
+          onCursorActivity={(editor) => {}}
+          value={value}
+          className="code-mirror-wrapper"
+          options={{
+            lineWrapping: true,
+            lint: true,
+            mode: 'lean',
+            theme: 'material',
+            lineNumbers: true
+          }}
+
+          resizable={false}
+/>
+```
+
+The `mode` property of the `options` object specifies what language the `ControlledEditor` component is using. Notice that the value of `mode` is a string. This is because the `CodeMirror` API stores all of its language modes internally rather than having them passed in from above.
+# Markdown Rendering
+> [`react-markdown`](https://www.npmjs.com/package/react-markdown) along with extensions
+[`remark-math`](https://www.npmjs.com/package/remark-math) and
+[`rehype-katex`](https://www.npmjs.com/package/rehype-katex) are used to create markdown rendering of text-cells.
+
+The following code snippet fromt the `react-markdown` documentation shows how the `remarkMath` and `rehypeKatex` plugins are used to render math equations in `ReactMarkdown` components:
+
+```jsx
+import React from 'react'
+import ReactDom from 'react-dom'
+import ReactMarkdown from 'react-markdown'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
+
+import 'katex/dist/katex.min.css' // `rehype-katex` does not import the CSS for you
+
+ReactDom.render(
+  <ReactMarkdown
+    children={`The lift coefficient ($C_L$) is a dimensionless coefficient.`}
+    remarkPlugins={[remarkMath]}
+    rehypePlugins={[rehypeKatex]}
+  />,
+  document.body
+)
+```
+Notice that the remarkMath and rehypeKatex objects are passed from above rather than stored internally by some sort of API object. This is because `ReactMarkdown` is a standalone react component, unlike `react-codemirror2` which relies on the `CodeMirror` API.
+
 # Lean Compiler
+
+>The lean compiler is run on a server which the lean-notebook calls using an API POST request. 
+
+>The leancompiler has actually been [dockerized](https://hub.docker.com/r/leanprovercommunity/mathlib) meaning that the leancompiler server side could be hosted on a cloud service such as [heroku](https://www.heroku.com/)
+
+<br>
+All code leading up to the users cursor position are stored in a leanfile which is then compiled. The resultant error logs are parsed into a tactic state.
