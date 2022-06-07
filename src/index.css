@@ -145,3 +145,8 @@ html, body {
 .dropdown-toggle::after {
   display: none !important; 
 }
+
+.save {
+  float: right;
+  margin: top;
+}

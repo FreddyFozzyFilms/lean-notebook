@@ -151,6 +151,20 @@ function App() {
       </div>
 
       <div className="console-container">
+        <button onClick={()=>{
+          const requestOptions = {
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({ cells: cells, name:prompt("name plz")})
+          };
+          fetch("http://localhost:8000/api/notebook/write", requestOptions)
+                    .then(res => res.json())
+                    .then(data => console.log(data));
+        }}
+        className="save">Save</button>
         <LeanOut log={leanOut} />
       </div>
     </div>
