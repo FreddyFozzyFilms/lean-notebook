@@ -66,3 +66,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+# Reusability
+The `Notebook` component is meant to be embedded in any website that may want to use it.
+
+The following resource describes how to [publish-react-components](https://levelup.gitconnected.com/publish-react-components-as-an-npm-package-7a671a2fb7f) as an npm package.
