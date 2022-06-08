@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
 
 import Notebook from './components/Notebook';
 import Gallery from './Gallery';
