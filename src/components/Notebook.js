@@ -18,12 +18,12 @@ function App(props) {
   }
   ]);
 
-  const {notebookId} = props;
+  const {notebookId, back} = props;
   useEffect(() => {
     fetch(`http://localhost:8000/api/notebook/read/${notebookId}`)
     .then((res) => res.json())
     .then((data) => {setCells(data.cells)})
-  })
+  }, [notebookId])
 
   //const [cursorInd, setCursorInd] = useState(0)
   const [cursorPos, setCursorPos] = useState({
@@ -172,6 +172,7 @@ function App(props) {
                     .then(data => console.log(data));
         }}
         className="save">Save</button>
+        <button className="back" onClick={back}>{"<-"}</button>
         <LeanOut log={leanOut} />
       </div>
     </div>

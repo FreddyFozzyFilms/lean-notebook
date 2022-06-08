@@ -12,10 +12,7 @@ export default function App(){
             { !loaded ?
                 <Gallery load={(id) => {setId(id); setLoaded(true)}}/> 
                 :
-                <div>
-                    <button className="back" onClick={() => setLoaded(false)}>{"<-"}</button>
-                    <Notebook notebookId={id} />
-                </div>
+                <Notebook notebookId={id} back={()=>setLoaded(false)} />
             }
         </>
     )
