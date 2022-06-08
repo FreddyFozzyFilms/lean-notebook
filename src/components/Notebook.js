@@ -19,6 +19,11 @@ function App(props) {
   ]);
 
   const {notebookId} = props;
+  useEffect(() => {
+    fetch(`http://localhost:8000/api/notebook/read/${notebookId}`)
+    .then((res) => res.json())
+    .then((data) => {setCells(data.cells)})
+  })
 
   //const [cursorInd, setCursorInd] = useState(0)
   const [cursorPos, setCursorPos] = useState({
