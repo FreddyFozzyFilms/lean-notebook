@@ -18,6 +18,13 @@ function App() {
   }
   ]);
 
+  const [notebookId, setNotebookId] = useState(0);
+  useEffect(() => {
+    fetch(`http://localhost:8000/api/notebook/read?id=${notebookId}`)
+                      .then(res => res.json())
+                      .then(data => console.log(data));
+  }, [notebookId])
+
   //const [cursorInd, setCursorInd] = useState(0)
   const [cursorPos, setCursorPos] = useState({
     cursorInd: 0,
@@ -165,6 +172,9 @@ function App() {
                     .then(data => console.log(data));
         }}
         className="save">Save</button>
+        <input value={notebookId} onChange={(event) => {
+            setNotebookId(event.target.value);
+        }} />
         <LeanOut log={leanOut} />
       </div>
     </div>
