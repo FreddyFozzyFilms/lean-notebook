@@ -14,7 +14,16 @@ export default function App(){
                     load={(id) => {setId(id); setLoaded(true)}}
                 /> 
                 :
-                <Notebook notebookId={id} back={()=>setLoaded(false)} />
+                <Notebook 
+                    notebookId={id} 
+                    back={()=>setLoaded(false)} 
+                    del={(id) => {
+                        fetch(`http://localhost:8000/api/notebook/delete/${id}`)
+                                    .then(res => res.json())
+                                    .then(data => console.log(data));
+                        
+                    }}    
+                />
             }
         </>
     )

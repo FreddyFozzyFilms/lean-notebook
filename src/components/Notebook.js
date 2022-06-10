@@ -35,7 +35,7 @@ function App(props) {
           }
         )
       };
-      fetch(`http://localhost:8000/api/notebook/modify/${notebookId}`, requestOptions)
+      fetch(`http://localhost:8000/api/notebook/write/${notebookId}`, requestOptions)
                 .then(res => res.json())
                 .then(data => console.log(data));
 
@@ -43,7 +43,7 @@ function App(props) {
     }
   }, [saving])
 
-  const {notebookId, back} = props;
+  const {notebookId, back, del} = props;
   useEffect(() => {
     fetch(`http://localhost:8000/api/notebook/read/${notebookId}`)
     .then((res) => res.json())
@@ -188,6 +188,8 @@ function App(props) {
         }}
         className="save">Save</button>
         <button className="back" onClick={back}>{"<-"}</button>
+        <button className="delete" onClick={() => del(notebookId)}>die</button>
+        <h1>id : {notebookId}</h1>
         <LeanOut log={leanOut} />
       </div>
     </div>
