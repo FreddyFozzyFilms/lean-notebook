@@ -154,13 +154,18 @@ html, body {
   margin: 5px;
 }
 
+.meta-gallery {
+  height: vh;
+  overflow-y: scroll; 
+}
+
 .gallery {
   display: flex;
   flex-wrap: wrap;
 }
 
 .card {
-  width: 195px;
+  width: 220px;
   height: 211;
   box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
 
@@ -178,13 +183,22 @@ html, body {
 }
 
 .thumbnail {
-  width: 170px;
+  width: 200px;
   height: 120px;
 
   margin-top: 15px;
   margin-left: 15px;
 
   background: #FFFFFF;
+}
+
+.card > img {
+  width: 200px;
+  height: 120px;
+
+  margin-top: 15px;
+  margin-left: 15px;
+
 }
 
 .banner {

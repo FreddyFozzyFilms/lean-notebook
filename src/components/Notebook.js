@@ -26,7 +26,14 @@ function App(props) {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify({ cells: cells, name:prompt("name plz")})
+        body: JSON.stringify(
+          {
+            cells: cells, 
+            name:prompt("name plz"), 
+            thumbnail:prompt("latex thumbnail plz"), 
+            description:prompt("description plz")
+          }
+        )
       };
       fetch(`http://localhost:8000/api/notebook/modify/${notebookId}`, requestOptions)
                 .then(res => res.json())

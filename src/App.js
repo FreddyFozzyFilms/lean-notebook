@@ -10,7 +10,9 @@ export default function App(){
     return (
         <>  
             { !loaded ?
-                <Gallery load={(id) => {setId(id); setLoaded(true)}}/> 
+                <Gallery 
+                    load={(id) => {setId(id); setLoaded(true)}}
+                /> 
                 :
                 <Notebook notebookId={id} back={()=>setLoaded(false)} />
             }

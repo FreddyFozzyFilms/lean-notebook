@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 import Card from './Card'
+import NewCard from './NewCard'
 
 import banner from './images/Banner.png'
 
@@ -19,22 +20,24 @@ export default function Gallery(props){
     console.log(notebooks)
 
     return (
-        <>
+        <div className="meta-gallery">
         <div className="banner">
             <img src={banner} alt="banner" />
         </div>
         <div className="gallery">
             {notebooks.map((notebook) => (
                 <Card
-                    stexThumbnail={"$3^{i\pi}$"}
+                    stexThumbnail={notebook.thumbnail}
                     name={notebook.name}
-                    description={"description"}
+                    description={notebook.description}
                     id={notebook.id}
                     key={notebook.id}
                     onClick={() => load(notebook.id)}
                 />
             ))}
+
+            <NewCard onClick={() => load(notebooks.length)}/>
         </div>
-        </>
+        </div>
     );
 }
