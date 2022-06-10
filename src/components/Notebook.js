@@ -17,6 +17,24 @@ function App(props) {
      id: 0
   }
   ]);
+  const [saving, setSaving] = useState(false);
+  useEffect(() => {
+    if (saving) {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ cells: cells, name:prompt("name plz")})
+      };
+      fetch(`http://localhost:8000/api/notebook/modify/${notebookId}`, requestOptions)
+                .then(res => res.json())
+                .then(data => console.log(data));
+
+      setSaving(false);
+    }
+  }, [saving])
 
   const {notebookId, back} = props;
   useEffect(() => {
@@ -159,17 +177,7 @@ function App(props) {
 
       <div className="console-container">
         <button onClick={()=>{
-          const requestOptions = {
-            method: 'POST',
-            headers: { 
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify({ cells: cells, name:prompt("name plz")})
-          };
-          fetch(`http://localhost:8000/api/notebook/modify/${notebookId}`, requestOptions)
-                    .then(res => res.json())
-                    .then(data => console.log(data));
+          setSaving(true);
         }}
         className="save">Save</button>
         <button className="back" onClick={back}>{"<-"}</button>

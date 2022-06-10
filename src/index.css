@@ -153,3 +153,48 @@ html, body {
 .back {
   margin: 5px;
 }
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 195px;
+  height: 211;
+  box-shadow: 5px 4px 4px rgba(0, 0, 0, 0.25);
+
+  word-wrap: break-word;
+
+  padding: 5px;
+  user-select: none;
+
+  margin-left: 20px;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  background: #C4C4C4;
+}
+
+.thumbnail {
+  width: 170px;
+  height: 120px;
+
+  margin-top: 15px;
+  margin-left: 15px;
+
+  background: #FFFFFF;
+}
+
+.banner {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 10px;
+}
+.banner > img {
+  width: 200px;
+  user-select:none;
+  -webkit-user-drag:none;
+}

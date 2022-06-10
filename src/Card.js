@@ -10,14 +10,15 @@ export default function Card(props){
 
     return (
         <div className="card" onClick={onClick}>
-            <ReactMarkdown 
-                children={stexThumbnail}
-                remarkPlugins={[remarkMath]}
-                rehypePlugins={[rehypeKatex]} />
+            <div className="thumbnail">
+                <ReactMarkdown 
+                    children={stexThumbnail}
+                    remarkPlugins={[remarkMath]}
+                    rehypePlugins={[rehypeKatex]} />
+            </div>
 
-            <h1>{name}</h1>
+            <h2>{name}</h2>
             <p>{description}</p>
-            <p>{id}</p>
         </div>
     )
 }
