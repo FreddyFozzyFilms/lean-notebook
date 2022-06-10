@@ -154,11 +154,6 @@ html, body {
   margin: 5px;
 }
 
-.meta-gallery {
-  height: vh;
-  overflow-y: scroll; 
-}
-
 .gallery {
   display: flex;
   flex-wrap: wrap;

@@ -20,7 +20,7 @@ export default function Gallery(props){
     console.log(notebooks)
 
     return (
-        <div className="meta-gallery">
+        <>
         <div className="banner">
             <img src={banner} alt="banner" />
         </div>
@@ -38,6 +38,6 @@ export default function Gallery(props){
 
             <NewCard onClick={() => load(notebooks.length)}/>
         </div>
-        </div>
+        </>
     );
 }
