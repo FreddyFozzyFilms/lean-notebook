@@ -25,6 +25,19 @@ https://observablehq.com/@bryangingechen/hello-lean-prover
 
 The primary benefit of his benefit over ours is that *observable* has better built in markdown preview and has a plethora of data visualization features.
 
+## **format_lean**
+
+`format_lean` turns `.lean` files into beautiful html webpages. The problem with their approach is that it is too UI centric. The user has to click a button just to see the tactic state at a point in the proof. 
+
+
+In addition, if there are multiple lines of code on a single line ex: `intro h, exact q, exact p,`
+ the user would be unable to see their tactic states.
+
+
+In short, it would be better if the user could get their hands dirty and go through the code themselves.
+
+
+https://github.com/leanprover-community/format_lean
 # Inspiration
 
 Interestingly enough, our rivals are also the primary inspiration for this project. The principal stylistic inspiration is Jupyter Notebook, but Bryan Chen's observable project was the principal technical inspiration (more details in the code mirror section).

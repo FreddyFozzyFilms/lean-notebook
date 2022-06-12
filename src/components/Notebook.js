@@ -153,7 +153,7 @@ function App(props) {
     })
   }
 
-  console.log(cells)
+  console.log(cursorPos)
   return (
     <div className="app">
       <div className="notepad">
