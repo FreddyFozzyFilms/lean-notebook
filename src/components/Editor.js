@@ -1,3 +1,8 @@
+// Copyright (c) 2022 FreddyFozzyFilms. All rights reserved.
+// Released under MIT license as described in the file LICENSE.
+// Authors: Frederick Pu
+// Defines the behavior & layout of each (code, text) cell.
+
 import React, { useState } from 'react'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/material.css'
@@ -47,15 +52,17 @@ export default function Editor(props) {
   return (
     <div className="cell-container">
       <div className={`editor-container ${open ? '' : 'collapsed'}`}>
-      {open && <SettingsBar changeMode={(mode) => (onCellChange(mode, value, id))} />}
+        {open && <SettingsBar changeMode={(mode) => (onCellChange(mode, value, id))} />}
+
         <div className="editor-title">
-        <div>
-          {language==='stex' && 
-            <ReactMarkdown 
-              children={value}
-              remarkPlugins={[remarkMath]}
-              rehypePlugins={[rehypeKatex]} />}
-        </div>
+            <div>
+              {language==='stex' && 
+                <ReactMarkdown 
+                  children={value}
+                  remarkPlugins={[remarkMath]}
+                  rehypePlugins={[rehypeKatex]} />}
+            </div>
+
             <button
               type="button"
               className="expand-collapse-btn"
@@ -87,6 +94,7 @@ export default function Editor(props) {
           resizable={false}
         />
         }
+
         {open &&
         <div className="add-cell-container">
           <button className="remove-cell" onClick={() => onCellDelete(id)}>-</button>

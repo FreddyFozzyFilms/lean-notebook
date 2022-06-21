@@ -1,3 +1,8 @@
+// Copyright (c) 2022 FreddyFozzyFilms. All rights reserved.
+// Released under MIT license as described in the file LICENSE.
+// Authors: Frederick Pu
+// Describes the behavior/layout of the lean-notebook.
+
 import React, { useState, useEffect } from 'react';
 import Editor from './Editor'
 import LeanOut from './LeanOut'

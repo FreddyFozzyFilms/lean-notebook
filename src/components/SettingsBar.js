@@ -1,3 +1,8 @@
+// Copyright (c) 2022 FreddyFozzyFilms. All rights reserved.
+// Released under MIT license as described in the file LICENSE.
+// Authors: Frederick Pu
+// Mode selection for the cells (choice between stex or lean).
+
 import React from "react";
 
 import { DropdownMultiple, Dropdown } from 'reactjs-dropdown-component';
