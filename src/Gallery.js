@@ -1,3 +1,8 @@
+// Copyright (c) 2022 FreddyFozzyFilms. All rights reserved.
+// Released under MIT license as described in the file LICENSE.
+// Authors: Chevy Zhang, Frederick Pu
+// Gallery component for displaying notebooks cards.
+
 import React, {useState, useEffect} from 'react';
 
 import Card from './Card'
@@ -11,6 +16,7 @@ export default function Gallery(props){
 
     const [notebooks, setNotebooks] = useState([]);
 
+    // fetch all notebooks from the server database
     useEffect(() => {
         fetch("http://localhost:8000/api/notebook/read")
                     .then(res => res.json())

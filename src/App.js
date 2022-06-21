@@ -1,3 +1,8 @@
+// Copyright (c) 2022 FreddyFozzyFilms. All rights reserved.
+// Released under MIT license as described in the file LICENSE.
+// Authors: Frederick Pu
+// App component which allows pseudo page transitions between notebook and gallery.
+
 import React, {useState, useEffect} from 'react';
 
 import Notebook from './components/Notebook';

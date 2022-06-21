@@ -1,3 +1,8 @@
+// Copyright (c) 2022 FreddyFozzyFilms. All rights reserved.
+// Released under MIT license as described in the file LICENSE.
+// Authors: Chevy Zhang, Frederick Pu
+// Card Component for the notebook gallery.
+
 import React, {useState, useEffect} from 'react';
 
 // markdown
